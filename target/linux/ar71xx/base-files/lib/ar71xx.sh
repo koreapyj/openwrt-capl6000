@@ -713,6 +713,9 @@ ar71xx_board_detect() {
 	*"CAP4200AG")
 		name="cap4200ag"
 		;;
+	*"CAPL-6000")
+		name="capl-6000"
+		;;
 	*"Carambola2"*)
 		name="carambola2"
 		;;

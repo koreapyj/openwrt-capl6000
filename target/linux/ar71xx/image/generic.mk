@@ -1350,3 +1350,26 @@ define Device/fritz450e
   IMAGE_SIZE := 15232k
 endef
 TARGET_DEVICES += fritz450e
+
+define Build/mkhbeimage
+  mv $@ $@.orig
+  mkhbeimage $@.orig $(1) $(2) $@
+  rm -rf $@.orig
+endef
+
+define Device/capl_6000
+  DEVICE_TITLE := Hanbit Electronics CAPL-6000
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage
+  BOARDNAME := CAPL-6000
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),7616k(firmware),1600k@0x50000(kernel),6016k@0x1e0000(rootfs),7616k(recovery)ro,640k(sysconf)ro,128k(NVRAM)ro,64k(art)ro
+  BLOCKSIZE := 64k
+  CONSOLE := ttyS0,115200
+  IMAGE_SIZE := 7616k
+  KERNEL_SIZE := 1600k
+  ROOTFS_SIZE := 6144k
+  KERNEL := kernel-bin | patch-cmdline | lzma -d20 | uImage lzma | mkhbeimage
+  KERNEL_INITRAMFS := kernel-bin | patch-cmdline | lzma -d20 | uImage lzma | mkhbeimage
+  IMAGES := sysupgrade.bin
+  IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs
+endef
+TARGET_DEVICES += capl_6000
