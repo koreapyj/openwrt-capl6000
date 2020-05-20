@@ -76,6 +76,7 @@ obj-$(CONFIG_ATH79_MACH_C55)			+= mach-c55.o
 obj-$(CONFIG_ATH79_MACH_C60)			+= mach-c60.o
 obj-$(CONFIG_ATH79_MACH_CAP324)			+= mach-cap324.o
 obj-$(CONFIG_ATH79_MACH_CAP4200AG)		+= mach-cap4200ag.o
+obj-$(CONFIG_ATH79_MACH_CAPL_6000)		+= mach-capl6000.o
 obj-$(CONFIG_ATH79_MACH_CARAMBOLA2)		+= mach-carambola2.o
 obj-$(CONFIG_ATH79_MACH_CF_E316N_V2)		+= mach-cf-e316n-v2.o
 obj-$(CONFIG_ATH79_MACH_CF_E320N_V2)		+= mach-cf-e316n-v2.o

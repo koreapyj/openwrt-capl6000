@@ -55,6 +55,16 @@ config ATH79_MACH_HORNET_UB
 	select ATH79_DEV_USB
 	select ATH79_DEV_WMAC
 
+config ATH79_MACH_CAPL_6000
+	bool "Hanbit Electronics CAPL-6000 board support"
+	select SOC_AR724X
+	select ATH79_DEV_AP9X_PCI if PCI
+	select ATH79_DEV_ETH
+	select ATH79_DEV_GPIO_BUTTONS
+	select ATH79_DEV_LEDS_GPIO
+	select ATH79_DEV_M25P80
+	select ATH79_DEV_USB
+
 config ATH79_MACH_ALFA_NX
 	bool "ALFA Network N2/N5 board support"
 	select SOC_AR724X
