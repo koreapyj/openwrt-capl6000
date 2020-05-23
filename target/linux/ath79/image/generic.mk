@@ -754,7 +754,7 @@ TARGET_DEVICES += zbtlink_zbt-wd323
 
 define Build/mkhbeimage
   mv $@ $@.orig
-  mkhbeimage $@.orig $(1) $(2) $@
+  mkhbeimage --no-padding $@.orig $(1) $(2) $@
   rm -rf $@.orig
 endef
 
@@ -763,11 +763,9 @@ define Device/hanbit_capl-6000
   DEVICE_TITLE := Hanbit Electronics CAPL-6000
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage
   IMAGE_SIZE := 15232k
-  KERNEL_SIZE := 2048k
-  ROOTFS_SIZE := 13184k
   KERNEL := kernel-bin | append-dtb | lzma -d20 | uImage lzma
-  KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma -d20 | uImage lzma | mkhbeimage
+  KERNEL_INITRAMFS := $$(KERNEL) | mkhbeimage | check-size $$(IMAGE_SIZE)
   IMAGES := sysupgrade.bin
-  IMAGE/sysupgrade.bin := append-kernel | mkhbeimage | pad-to $$(KERNEL_SIZE) | append-rootfs | check-size $$$$(IMAGE_SIZE) | pad-rootfs | append-metadata
+  IMAGE/sysupgrade.bin := append-kernel | mkhbeimage $$$$(IMAGE_ROOTFS) | check-size $$(IMAGE_SIZE) | pad-rootfs | append-metadata
 endef
 TARGET_DEVICES += hanbit_capl-6000

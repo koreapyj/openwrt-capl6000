@@ -36,11 +36,6 @@
 			label = "hanbit:green:system";
 			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
 		};
-
-		qss {
-			label = "hanbit:green:qss";
-			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
-		};
 	};
 
 	ath9k-leds {
@@ -95,22 +90,9 @@
 			};
 
 			partition@50000 {
+				compatible = "hanbit,firmware";
 				label = "firmware";
 				reg = <0x050000 0xee0000>;
-
-				compatible = "fixed-partitions";
-				#address-cells = <1>;
-				#size-cells = <1>;
-
-				partition@0 {
-					reg = <0x0 0x200000>;
-					label = "kernel";
-				};
-
-				partition@200000 {
-					reg = <0x200000 0xce0000>;
-					label = "rootfs";
-				};
 			};
 
 			partition@f30000 {
